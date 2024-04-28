@@ -15,10 +15,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/858c0c4340.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="app.js"></script>
 </head>
 
 <body>
     <!-- nav bar -->
+    <div id="loader" class="loader"></div>
     <div class="start">
         <div class="container">
             <div class="row">
@@ -41,11 +43,24 @@
                 </div>
                 <div class="col text-end"> <!-- Aligns the content to the right -->
                     <div class="icons">
-                        <a href="WishList.html"><i style="color: #fff; padding-right: 10px;"
-                                class="fa-regular fa-heart fa-lg"></i></a>
-                        <a href="cart.html"> <i style="color: #fff; padding-right: 10px;"
-                                class="fa-solid fa-cart-shopping fa-lg"></i></a>
-                        <a href="user.html"> <i style="color: #fff;" class="fa-solid fa-user fa-lg"></i></a>
+                        <a href="Contact.html"><i style="color: #fff; padding-right: 10px"
+                                class="fa-solid fa-headset fa-lg" aria-hidden="true"></i></a>
+                        <a href="WishList.html"><i style="color: #fff; padding-right: 10px"
+                                class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                        <a href="user.html">
+                            <i style="color: #fff" class="fa-solid fa-user fa-lg" aria-hidden="true"></i></a>
+                        <a href="cart.html" style="margin-left: 10px;">
+                            <div class="mini-cart">
+                                <div class="cart-icon"><i style="color: #fff; padding-right: 10px"
+                                        class="fa-solid fa-cart-shopping fa-lg" aria-hidden="true"></i></div>
+                                <div class="cart-summary">
+                                    <ul class="cart-items">
+                                        <!-- Cart items will be dynamically injected here -->
+                                    </ul>
+                                    <div class="cart-total">Total: $0</div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-auto"> <!-- Automatically adjusts column width -->

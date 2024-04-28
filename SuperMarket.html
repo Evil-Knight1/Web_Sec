@@ -15,9 +15,13 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://kit.fontawesome.com/858c0c4340.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap.min.css" />
+    <!-- link animation scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <div id="loader" class="loader"></div>
     <div class="all">
         <!-- nav bar -->
         <div class="start">
@@ -43,13 +47,24 @@
                     <div class="col text-end">
                         <!-- Aligns the content to the right -->
                         <div class="icons">
+                            <a href="Contact.html"><i style="color: #fff; padding-right: 10px"
+                                    class="fa-solid fa-headset fa-lg" aria-hidden="true"></i></a>
                             <a href="WishList.html"><i style="color: #fff; padding-right: 10px"
                                     class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                            <a href="cart.html">
-                                <i style="color: #fff; padding-right: 10px" class="fa-solid fa-cart-shopping fa-lg"
-                                    aria-hidden="true"></i></a>
                             <a href="user.html">
                                 <i style="color: #fff" class="fa-solid fa-user fa-lg" aria-hidden="true"></i></a>
+                            <a href="cart.html" style="margin-left: 10px;">
+                                <div class="mini-cart">
+                                    <div class="cart-icon"><i style="color: #fff; padding-right: 10px"
+                                            class="fa-solid fa-cart-shopping fa-lg" aria-hidden="true"></i></div>
+                                    <div class="cart-summary">
+                                        <ul class="cart-items">
+                                            <!-- Cart items will be dynamically injected here -->
+                                        </ul>
+                                        <div class="cart-total">Total: $0</div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -114,77 +129,85 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true"
-                            style="background: #ffc847">
-                            Categories
-                        </a>
-                        <a href="index.html" class="list-group-item list-group-item-action"><i class="fa-solid fa-house"
-                                aria-hidden="true"></i> Home</a>
-                        <a href="Clothing.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-shirt" aria-hidden="true"></i>
-                            Clothing</a>
-                        <a href="Electronics.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-tv" aria-hidden="true"></i>
-                            Electronics</a>
-                        <a href="Watches.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-clock" aria-hidden="true"></i> Watches</a>
-                        <a href="Shoes.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-shoe-prints" aria-hidden="true"></i>
-                            Shoes</a>
-                        <a style="background: #182957; color: #fff" href="SuperMarket.html"
-                            class="list-group-item list-group-item-action"><i class="fa-solid fa-store"
-                                aria-hidden="true"></i> Super
-                            Market</a>
-                        <a href="Homesupplies.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-house-circle-check" aria-hidden="true"></i>
-                            Home Supplies</a>
-                        <a href="Toys.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
-                            Toys and Games</a>
-                        <a href="games.html" class="list-group-item list-group-item-action"><i
-                                class="fa-solid fa-gamepad" aria-hidden="true"></i> Video
-                            Game</a>
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action" aria-current="true"
+                                style="background: #ffc847">
+                                Categories
+                            </a>
+                            <a href="index.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+                            <a href="Clothing.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-shirt" aria-hidden="true"></i>
+                                Clothing</a>
+                            <a href="Electronics.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-tv" aria-hidden="true"></i>
+                                Electronics</a>
+                            <a href="Watches.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-clock" aria-hidden="true"></i> Watches</a>
+                            <a href="Shoes.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-shoe-prints" aria-hidden="true"></i>
+                                Shoes</a>
+                            <a style="background: #182957; color: #fff" href="SuperMarket.html"
+                                class="list-group-item list-group-item-action"><i class="fa-solid fa-store"
+                                    aria-hidden="true"></i> Super
+                                Market</a>
+                            <a href="Homesupplies.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-house-circle-check" aria-hidden="true"></i>
+                                Home Supplies</a>
+                            <a href="Toys.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
+                                Toys and Games</a>
+                            <a href="games.html" class="list-group-item list-group-item-action"><i
+                                    class="fa-solid fa-gamepad" aria-hidden="true"></i> Video
+                                Game</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel"
-                        style="height: 448px">
-                        <div class="carousel-inner">
-                            <div class="carousel-item carousel-item-next carousel-item-start" data-bs-interval="4000">
-                                <img src="img/mainSuper1.jpg" class="d-block w-100" alt="..." style="height: 448px" />
+                    <div data-aos="fade-left" data-aos-duration="3000">
+                        <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                            style="height: 448px">
+                            <div class="carousel-inner">
+                                <div class="carousel-item carousel-item-next carousel-item-start"
+                                    data-bs-interval="4000">
+                                    <img src="img/mainSuper1.jpg" class="d-block w-100" alt="..."
+                                        style="height: 448px" />
+                                </div>
+                                <div class="carousel-item" data-bs-interval="4000">
+                                    <img src="img/mainSuper2.jpg" class="d-block w-100" alt="..."
+                                        style="height: 448px" />
+                                </div>
+                                <div class="carousel-item active carousel-item-start">
+                                    <img src="img/mainSuper3.jpg" class="d-block w-100" alt="..."
+                                        style="height: 448px" />
+                                </div>
                             </div>
-                            <div class="carousel-item" data-bs-interval="4000">
-                                <img src="img/mainSuper2.jpg" class="d-block w-100" alt="..." style="height: 448px" />
-                            </div>
-                            <div class="carousel-item active carousel-item-start">
-                                <img src="img/mainSuper3.jpg" class="d-block w-100" alt="..." style="height: 448px" />
-                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                    <div class="row">
-                        <div style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-around;
-                  margin: auto;
-                  background-color: #fff;
-                  border-radius: 5px;
-                  padding: 12px;
-                " class="mt-4">
-                            <img src="img/tech-1.png" class="img-fluid" alt="" />
-                            <img src="img/tech-2.png" class="img-fluid" alt="" />
-                            <img src="img/tech-3.png" class="img-fluid" alt="" />
+                        <div class="row">
+                            <div style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-around;
+                      margin: auto;
+                      background-color: #fff;
+                      border-radius: 5px;
+                      padding: 12px;
+                    " class="mt-4">
+                                <img src="img/tech-1.png" class="img-fluid" alt="" />
+                                <img src="img/tech-2.png" class="img-fluid" alt="" />
+                                <img src="img/tech-3.png" class="img-fluid" alt="" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,365 +220,370 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="card" style="padding: 10px">
-                        <h4 style="color: #000; font-weight: bolder">Category</h4>
-                        <div class="spans">
-                            <h6>Kitchen gadgets</h6>
-                            <h6>Kitchen Machines</h6>
-                            <h6>Other</h6>
-                        </div>
-                        <hr />
-                        <h4 style="color: #000; font-weight: bolder">
-                            Avg. Customer Review
-                        </h4>
-                        <div class="spans2">
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <span>&amp; Up</span>
-                        </div>
-                        <div class="spans2">
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <span>&amp; Up</span>
-                        </div>
-                        <div class="spans2">
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <span>&amp; Up</span>
-                        </div>
-                        <div class="spans2">
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <span>&amp; Up</span>
-                        </div>
-                        <div class="spans2">
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
-                            <span>Only</span>
-                        </div>
-                        <hr />
-                        <h4>Brands</h4>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Tornado
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Braun
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">
-                                SHARP
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">
-                                ZANUSSI
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">
-                                beko
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">
-                                LG
-                            </label>
-                        </div>
-                        <hr />
-                        <h4 style="color: #000; font-weight: bolder">Price</h4>
-                        <span class="span2">25 to 50 USD </span>
-                        <span class="span2">50 to 100 USD </span>
-                        <span class="span2">100 to 200 USD </span>
-                        <span class="span2">200 to 300 USD </span>
-                        <span class="span2">300 to 400 USD </span>
-                        <span class="span2">400 USD to Above </span>
-                        <br />
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">USD</span>
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card" style="padding: 10px">
+                            <h4 style="color: #000; font-weight: bolder">Category</h4>
+                            <div class="spans">
+                                <h6>Kitchen gadgets</h6>
+                                <h6>Kitchen Machines</h6>
+                                <h6>Other</h6>
                             </div>
-                            <input type="number" class="form-control" placeholder="Min" aria-label="Username"
-                                aria-describedby="basic-addon1" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">USD</span>
+                            <hr />
+                            <h4 style="color: #000; font-weight: bolder">
+                                Avg. Customer Review
+                            </h4>
+                            <div class="spans2">
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <span>&amp; Up</span>
                             </div>
-                            <input type="number" class="form-control" placeholder="Max" aria-label="Username"
-                                aria-describedby="basic-addon1" />
+                            <div class="spans2">
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <span>&amp; Up</span>
+                            </div>
+                            <div class="spans2">
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <span>&amp; Up</span>
+                            </div>
+                            <div class="spans2">
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <span>&amp; Up</span>
+                            </div>
+                            <div class="spans2">
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star fa-sm" style="color: #ffc847" aria-hidden="true"></i>
+                                <span>Only</span>
+                            </div>
+                            <hr />
+                            <h4>Brands</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Tornado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Braun
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    SHARP
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    ZANUSSI
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    beko
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    LG
+                                </label>
+                            </div>
+                            <hr />
+                            <h4 style="color: #000; font-weight: bolder">Price</h4>
+                            <span class="span2">25 to 50 USD </span>
+                            <span class="span2">50 to 100 USD </span>
+                            <span class="span2">100 to 200 USD </span>
+                            <span class="span2">200 to 300 USD </span>
+                            <span class="span2">300 to 400 USD </span>
+                            <span class="span2">400 USD to Above </span>
+                            <br />
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">USD</span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="Min" aria-label="Username"
+                                    aria-describedby="basic-addon1" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">USD</span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="Max" aria-label="Username"
+                                    aria-describedby="basic-addon1" />
+                            </div>
+                            <input style="color: #182957" type="button" value="go" />
+                            <hr />
+                            <h4>Deals &amp; Discounts</h4>
+                            <span class="span2">All Discount</span>
                         </div>
-                        <input style="color: #182957" type="button" value="go" />
-                        <hr />
-                        <h4>Deals &amp; Discounts</h4>
-                        <span class="span2">All Discount</span>
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="row" style="padding: 0">
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market1.jpg" class="card-img-top" />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Hand Blinder</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Kitchen Gadget</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $100
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$140</del>
-                                                    </div>
+                    <div data-aos="fade-left" data-aos-duration="3000">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="row" style="padding: 0">
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market1.jpg"
+                                                        class="card-img-top" />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Hand Blinder</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Kitchen Gadget</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $100
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$140</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market2.jpg" class="card-img-top"
-                                                    alt="..." />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Washing Gloves</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Recyclable</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $10
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$20</del>
-                                                    </div>
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market2.jpg"
+                                                        class="card-img-top" alt="..." />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Washing Gloves</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Recyclable</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $10
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$20</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market3.jpg" class="card-img-top"
-                                                    alt="..." />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Plastic Cups</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Party On!!</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $10
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$20</del>
-                                                    </div>
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market3.jpg"
+                                                        class="card-img-top" alt="..." />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Plastic Cups</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Party On!!</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $10
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$20</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market4.jpg" class="card-img-top"
-                                                    alt="..." />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Coffee Machine</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Best Seller</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $150
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$200</del>
-                                                    </div>
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market4.jpg"
+                                                        class="card-img-top" alt="..." />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Coffee Machine</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Best Seller</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $150
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$200</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -567,245 +595,248 @@
                     </div>
                     <br />
                     <div class="col">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="row" style="padding: 0">
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market5.jpg" class="card-img-top" />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Water Filter</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Kitchen Gadget</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $100
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$140</del>
-                                                    </div>
+                        <div data-aos="fade-left" data-aos-duration="3000">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="row" style="padding: 0">
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market5.jpg"
+                                                        class="card-img-top" />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Water Filter</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Kitchen Gadget</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $100
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$140</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market6.jpg" class="card-img-top"
-                                                    alt="..." />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Tea Kettle</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Kitchen Gadget</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $150
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$200</del>
-                                                    </div>
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market6.jpg"
+                                                        class="card-img-top" alt="..." />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Tea Kettle</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Kitchen Gadget</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $150
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$200</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market7.jpg" class="card-img-top"
-                                                    alt="..." />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Smoothie Blinder</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Kitchen Gadget</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $100
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$140</del>
-                                                    </div>
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market7.jpg"
+                                                        class="card-img-top" alt="..." />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Smoothie Blinder</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Kitchen Gadget</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $100
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$140</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <img style="height: 223px" src="img/market8.jpg" class="card-img-top"
-                                                    alt="..." />
-                                                <hr />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Toaster</h5>
-                                                    <span style="
-                                color: white;
-                                background: #b54625;
-                                border-radius: 5px;
-                                font-size: 14px;
-                                padding: 3px;
-                              ">SuperMarket</span>
-                                                    <p>Kitchen Gadget</p>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <i style="color: #ffc847" class="fa-solid fa-star"
-                                                        aria-hidden="true"></i>
-                                                    <br />
-                                                    <div class="sales" style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                              ">
-                                                        <p style="color: rgb(213, 84, 84); font-size: 25px">
-                                                            $150
-                                                        </p>
-                                                        <del style="
-                                  color: rgb(162, 162, 154);
-                                  font-size: 18px;
-                                ">$200</del>
-                                                    </div>
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <img style="height: 223px" src="img/market8.jpg"
+                                                        class="card-img-top" alt="..." />
                                                     <hr />
-                                                    <div class="icones" style="
-                                display: flex;
-                                justify-content: space-between;
-                              ">
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-heart fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="WishList.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-regular fa-bookmark fa-lg"
-                                                                aria-hidden="true"></i></a>
-                                                        <a href="product01.html"
-                                                            style="text-decoration: none; color: #000"><i
-                                                                class="fa-solid fa-cart-plus fa-lg"
-                                                                aria-hidden="true"></i></a>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Toaster</h5>
+                                                        <span style="
+                                    color: white;
+                                    background: #b54625;
+                                    border-radius: 5px;
+                                    font-size: 14px;
+                                    padding: 3px;
+                                  ">SuperMarket</span>
+                                                        <p>Kitchen Gadget</p>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <i style="color: #ffc847" class="fa-solid fa-star"
+                                                            aria-hidden="true"></i>
+                                                        <br />
+                                                        <div class="sales" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                  ">
+                                                            <p style="color: rgb(213, 84, 84); font-size: 25px">
+                                                                $150
+                                                            </p>
+                                                            <del style="
+                                      color: rgb(162, 162, 154);
+                                      font-size: 18px;
+                                    ">$200</del>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="icones" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                  ">
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-heart fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="WishList.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-regular fa-bookmark fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a href="product01.html"
+                                                                style="text-decoration: none; color: #000"><i
+                                                                    class="fa-solid fa-cart-plus fa-lg"
+                                                                    aria-hidden="true"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -975,8 +1006,13 @@
             </section>
         </div>
         <!-- Footer -->
-        <!-- Footer -->
+        <!-- animation scroll -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
     </footer>
 </body>
+<script src="app.js"></script>
 
 </html>

@@ -15,9 +15,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/858c0c4340.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <!-- link animation scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <div id="loader" class="loader"></div>
     <div class="all">
         <!-- nav bar -->
         <div class="start">
@@ -42,12 +46,24 @@
                     </div>
                     <div class="col text-end"> <!-- Aligns the content to the right -->
                         <div class="icons">
-                            <a href="WishList.html"><i style="color: #fff; padding-right: 10px;"
+                            <a href="Contact.html"><i style="color: #fff; padding-right: 10px"
+                                    class="fa-solid fa-headset fa-lg" aria-hidden="true"></i></a>
+                            <a href="WishList.html"><i style="color: #fff; padding-right: 10px"
                                     class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                            <a href="cart.html"> <i style="color: #fff; padding-right: 10px;"
-                                    class="fa-solid fa-cart-shopping fa-lg" aria-hidden="true"></i></a>
-                            <a href="user.html"> <i style="color: #fff;" class="fa-solid fa-user fa-lg"
-                                    aria-hidden="true"></i></a>
+                            <a href="user.html">
+                                <i style="color: #fff" class="fa-solid fa-user fa-lg" aria-hidden="true"></i></a>
+                            <a href="cart.html" style="margin-left: 10px;">
+                                <div class="mini-cart">
+                                    <div class="cart-icon"><i style="color: #fff; padding-right: 10px"
+                                            class="fa-solid fa-cart-shopping fa-lg" aria-hidden="true"></i></div>
+                                    <div class="cart-summary">
+                                        <ul class="cart-items">
+                                            <!-- Cart items will be dynamically injected here -->
+                                        </ul>
+                                        <div class="cart-total">Total: $0</div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-auto"> <!-- Automatically adjusts column width -->
@@ -70,8 +86,7 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page"
-                                            href="index.html">Home</a>
+                                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="clothing.html">Clothing</a>
@@ -112,102 +127,108 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="product">
-                        <div class="img-container"
-                            style="display: flex;justify-content: center; align-items: center; margin: auto; border-radius: 10px; background-color: #fff;">
-                            <img id="iamgeBox" src="img/01-removebg-preview.png" alt="">
-                        </div>
-                        <div class="product-small-img" style="margin-top: 5px;">
-                            <div class="row">
-                                <div class="col"
-                                    style="margin: 5px; background-color: #fff; border-radius: 10px 0px 0px 10px;">
-                                    <img src="img/01-removebg-preview.png" alt="" onclick="myfunction(this)">
-                                </div>
-                                <div class="col" style="margin: 5px; background-color: #fff;">
-                                    <img src="img/02.png" alt="" onclick="myfunction(this)">
-                                </div>
-                                <div class="col" style="margin: 5px; background-color: #fff;">
-                                    <img src="img/03.png" alt="" onclick="myfunction(this)">
-                                </div>
-                                <div class="col" style="margin: 5px; background-color: #fff;">
-                                    <img src="img/04-removebg-preview (1).png" alt="" onclick="myfunction(this)">
-                                </div>
-                                <div class="col"
-                                    style="margin: 5px; background-color: #fff; border-radius: 0px 10px 10px 0px;">
-                                    <img src="img/03-removebg-preview.png" alt="" onclick="myfunction(this)">
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="product">
+                            <div class="img-container"
+                                style="display: flex;justify-content: center; align-items: center; margin: auto; border-radius: 10px; background-color: #fff;">
+                                <img id="iamgeBox" src="img/01-removebg-preview.png" alt="">
+                            </div>
+                            <div class="product-small-img" style="margin-top: 5px;">
+                                <div class="row">
+                                    <div class="col"
+                                        style="margin: 5px; background-color: #fff; border-radius: 10px 0px 0px 10px;">
+                                        <img src="img/01-removebg-preview.png" alt="" onclick="myfunction(this)">
+                                    </div>
+                                    <div class="col" style="margin: 5px; background-color: #fff;">
+                                        <img src="img/02.png" alt="" onclick="myfunction(this)">
+                                    </div>
+                                    <div class="col" style="margin: 5px; background-color: #fff;">
+                                        <img src="img/03.png" alt="" onclick="myfunction(this)">
+                                    </div>
+                                    <div class="col" style="margin: 5px; background-color: #fff;">
+                                        <img src="img/04-removebg-preview (1).png" alt="" onclick="myfunction(this)">
+                                    </div>
+                                    <div class="col"
+                                        style="margin: 5px; background-color: #fff; border-radius: 0px 10px 10px 0px;">
+                                        <img src="img/03-removebg-preview.png" alt="" onclick="myfunction(this)">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <h2>Ment T-shirt</h2>
-                    <hr>
-                    <span>Stars</span>
-                    <br>
-                    <br>
-                    <div class="stars">
-                        <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
-                        <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
-                        <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
-                        <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
-                        <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
-                    </div>
-                    <br>
-                    <div class="sales" style="display: flex; align-items: center;">
-                        <p style="color: rgb(213, 84, 84); font-size: 25px;">$80
-                        </p>
-                        <del style="color: rgb(162, 162, 154);margin-left: 14px; font-size: 18px;">$120</del>
-                    </div>
-                    <br>
-                    <p>White Shirt with Black collar</p>
-                    <br>
-                    <div class="row">
-                        <div class="col-2">
-                            <h6 style="font-weight: bolder;">Model</h6>
-                            <h6 style="font-weight: bolder;">Color</h6>
-                            <h6 style="font-weight: bolder;">Delivery</h6>
+                    <div data-aos="fade-left" data-aos-duration="3000">
+                        <h2>Ment T-shirt</h2>
+                        <hr>
+                        <span>Stars</span>
+                        <br>
+                        <br>
+                        <div class="stars">
+                            <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
+                            <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
+                            <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
+                            <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
+                            <i style="color: #ffc847;" class="fa-solid fa-star fa-lg" aria-hidden="true"></i>
                         </div>
-                        <div class="col-8">
-                            <h6 style="font-weight: lighter;">shirt XML27</h6>
-                            <h6 style="font-weight: lighter;">White</h6>
-                            <h6 style="font-weight: lighter;">Available</h6>
+                        <br>
+                        <div class="sales" style="display: flex; align-items: center;">
+                            <p style="color: rgb(213, 84, 84); font-size: 25px;">$80
+                            </p>
+                            <del style="color: rgb(162, 162, 154);margin-left: 14px; font-size: 18px;">$120</del>
                         </div>
+                        <br>
+                        <p>White Shirt with Black collar</p>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                <h6 style="font-weight: bolder;">Model</h6>
+                                <h6 style="font-weight: bolder;">Color</h6>
+                                <h6 style="font-weight: bolder;">Delivery</h6>
+                            </div>
+                            <div class="col-8">
+                                <h6 style="font-weight: lighter;">shirt XML27</h6>
+                                <h6 style="font-weight: lighter;">White</h6>
+                                <h6 style="font-weight: lighter;">Available</h6>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-1">
+                                <h6 style="font-weight: bolder;">Size:</h6>
+                            </div>
+                            <div class="col-2"><input type="checkbox" name="Small" id="">Small</div>
+                            <div class="col-2"><input type="checkbox" name="Medium" id="">Medium</div>
+                            <div class="col-2"><input type="checkbox" name="Large" id="">Large</div>
+                        </div>
+                        <br>
+                        <form class="d-flex justify-content-left">
+                            <!-- Default input -->
+                            <div class="form-outline me-1" style="width: 100px;">
+                                <input type="number" value="1" class="form-control">
+                            </div>
+                            <button class="btn  ms-1" type="submit" style="background: rgb(72, 172, 72);">
+                                Add to cart
+                                <i class="fas fa-shopping-cart ms-1" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-1">
-                            <h6 style="font-weight: bolder;">Size:</h6>
-                        </div>
-                        <div class="col-2"><input type="checkbox" name="Small" id="">Small</div>
-                        <div class="col-2"><input type="checkbox" name="Medium" id="">Medium</div>
-                        <div class="col-2"><input type="checkbox" name="Large" id="">Large</div>
-                    </div>
-                    <br>
-                    <form class="d-flex justify-content-left">
-                        <!-- Default input -->
-                        <div class="form-outline me-1" style="width: 100px;">
-                            <input type="number" value="1" class="form-control">
-                        </div>
-                        <button class="btn  ms-1" type="submit" style="background: rgb(72, 172, 72);">
-                            Add to cart
-                            <i class="fas fa-shopping-cart ms-1" aria-hidden="true"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
             <br>
             <br>
-            <div class="row">
-                <div class="col-4"><input
-                        style="width: 100%;background-color: #fff; border: none; border-radius: 5px; height: 30px;"
-                        type="button" value="Description"></div>
-                <div class="col-4"><input
-                        style="width: 100%;background-color: #fff; border: none; border-radius: 5px; height: 30px;"
-                        type="button" value="Details"></div>
-                <div class="col-4"><input
-                        style="width: 100%; color: #fff; background-color: #182957; border: none; border-radius: 5px; height: 30px;"
-                        type="button" value="Reviews"></div>
+            <div data-aos="flip-right" data-aos-duration="3000">
+                <div class="row">
+                    <div class="col-4"><input
+                            style="width: 100%;background-color: #fff; border: none; border-radius: 5px; height: 30px;"
+                            type="button" value="Description"></div>
+                    <div class="col-4"><input
+                            style="width: 100%;background-color: #fff; border: none; border-radius: 5px; height: 30px;"
+                            type="button" value="Details"></div>
+                    <div class="col-4"><input
+                            style="width: 100%; color: #fff; background-color: #182957; border: none; border-radius: 5px; height: 30px;"
+                            type="button" value="Reviews"></div>
+                </div>
             </div>
             <br>
             <br>
@@ -217,32 +238,34 @@
             <br>
             <div class="row">
                 <div class="col-lg-7">
-                    <div class="row">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-10">
-                                <div class="card">
-                                    <div class="card-body m-3">
-                                        <div class="row">
-                                            <div
-                                                class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                                                <img src="img/avatar2.png"
-                                                    class="rounded-circle img-fluid shadow-1" alt="woman avatar"
-                                                    width="200" height="200">
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <p class="text-muted fw-light mb-4">Nice Shirt</p>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-regular fa-star-half-stroke fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <p class="fw-bold lead mb-2"><strong>Mark</strong></p>
-                                                <p class="fw-bold text-muted mb-0">Product manager</p>
+                    <div data-aos="fade-up" data-aos-anchor-placement="top-center">
+                        <div class="row">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-10">
+                                    <div class="card">
+                                        <div class="card-body m-3">
+                                            <div class="row">
+                                                <div
+                                                    class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                                                    <img src="img/avatar2.png" class="rounded-circle img-fluid shadow-1"
+                                                        alt="woman avatar" width="200" height="200">
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-muted fw-light mb-4">Nice Shirt</p>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;"
+                                                        class="fa-regular fa-star-half-stroke fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <p class="fw-bold lead mb-2"><strong>Mark</strong></p>
+                                                    <p class="fw-bold text-muted mb-0">Product manager</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -254,29 +277,31 @@
                     <div class="row">
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-10">
-                                <div class="card">
-                                    <div class="card-body m-3">
-                                        <div class="row">
-                                            <div
-                                                class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-                                                <img src="img/avatar1.png"
-                                                    class="rounded-circle img-fluid shadow-1" alt="woman avatar"
-                                                    width="200" height="200">
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <p class="text-muted fw-light mb-4">Comfy at summer</p>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <i style="color: #ffc847;" class="fa-regular fa-star-half-stroke fa-lg"
-                                                    aria-hidden="true"></i>
-                                                <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                                                <p class="fw-bold text-muted mb-0">Product manager</p>
+                                <div data-aos="fade-up" data-aos-anchor-placement="top-center">
+                                    <div class="card">
+                                        <div class="card-body m-3">
+                                            <div class="row">
+                                                <div
+                                                    class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                                                    <img src="img/avatar1.png" class="rounded-circle img-fluid shadow-1"
+                                                        alt="woman avatar" width="200" height="200">
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-muted fw-light mb-4">Comfy at summer</p>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;" class="fa-solid fa-star fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <i style="color: #ffc847;"
+                                                        class="fa-regular fa-star-half-stroke fa-lg"
+                                                        aria-hidden="true"></i>
+                                                    <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
+                                                    <p class="fw-bold text-muted mb-0">Product manager</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -286,28 +311,31 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <h4>rate this product</h4>
-                    <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
-                    <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
-                    <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
-                    <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
-                    <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
-                    <br>
-                    <hr>
-                    <br>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name">
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
-                    </div>
-                    <div class="mb-3">
-                        <textarea placeholder="Your Review" class="form-control" id="exampleFormControlTextarea1"
-                            rows="3"></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn mb-3"
-                            style="background-color: #182957; color: #fff;">Submit</button>
+                    <div data-aos="fade-up" data-aos-anchor-placement="top-center">
+
+                        <h4>rate this product</h4>
+                        <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
+                        <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
+                        <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
+                        <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
+                        <i class="fa-regular fa-star fa-lg" aria-hidden="true"></i>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+                            <textarea placeholder="Your Review" class="form-control" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn mb-3"
+                                style="background-color: #182957; color: #fff;">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -322,97 +350,103 @@
                         <div class="row">
                             <!-- Product card 1 -->
                             <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <img style="height: 350px;" src="img/clouthes02.jpg" class="card-img-top"
-                                        alt="Product Image">
-                                    <hr>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Red Hoodie</h5>
-                                        <span class="badge bg-danger text-white">Clothes</span>
-                                        <p>Hoodie</p>
-                                        <div class="stars">
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <p class="text-danger fs-5">$80</p>
-                                            <del class="text-muted fs-6">$120</del>
-                                        </div>
+                                <div data-aos="fade-up" data-aos-duration="3000">
+                                    <div class="card">
+                                        <img style="height: 350px;" src="img/clouthes02.jpg" class="card-img-top"
+                                            alt="Product Image">
                                         <hr>
-                                        <div class="icones d-flex justify-content-between mt-3">
-                                            <a href="WishList.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                            <a href="WishList.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                            <a href="product01.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Red Hoodie</h5>
+                                            <span class="badge bg-danger text-white">Clothes</span>
+                                            <p>Hoodie</p>
+                                            <div class="stars">
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <p class="text-danger fs-5">$80</p>
+                                                <del class="text-muted fs-6">$120</del>
+                                            </div>
+                                            <hr>
+                                            <div class="icones d-flex justify-content-between mt-3">
+                                                <a href="WishList.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                                <a href="WishList.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                                <a href="product01.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <img style="height: 350px;" src="img/clothes11.png" class="card-img-top"
-                                        alt="Product Image">
-                                    <hr>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Brown &amp; White Shirt</h5>
-                                        <span class="badge bg-danger text-white">Clothes</span>
-                                        <p>Last Piece</p>
-                                        <div class="stars">
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <p class="text-danger fs-5">$50</p>
-                                            <del class="text-muted fs-6">$60</del>
-                                        </div>
+                                <div data-aos="fade-up" data-aos-duration="3000">
+                                    <div class="card">
+                                        <img style="height: 350px;" src="img/clothes11.png" class="card-img-top"
+                                            alt="Product Image">
                                         <hr>
-                                        <div class="icones d-flex justify-content-between mt-3">
-                                            <a href="WishList.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                            <a href="WishList.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                            <a href="product01.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Brown &amp; White Shirt</h5>
+                                            <span class="badge bg-danger text-white">Clothes</span>
+                                            <p>Last Piece</p>
+                                            <div class="stars">
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <p class="text-danger fs-5">$50</p>
+                                                <del class="text-muted fs-6">$60</del>
+                                            </div>
+                                            <hr>
+                                            <div class="icones d-flex justify-content-between mt-3">
+                                                <a href="WishList.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                                <a href="WishList.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                                <a href="product01.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 mb-4">
-                                <div class="card">
-                                    <img style="height: 350px;" src="img/clothes19.jfif" class="card-img-top"
-                                        alt="Product Image">
-                                    <hr>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Oversize T-shirt</h5>
-                                        <span class="badge bg-danger text-white">Clothes</span>
-                                        <p>Best Seller</p>
-                                        <div class="stars">
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <p class="text-danger fs-5">$30</p>
-                                            <del class="text-muted fs-6">$45</del>
-                                        </div>
+                                <div data-aos="fade-up" data-aos-duration="3000">
+                                    <div class="card">
+                                        <img style="height: 350px;" src="img/clothes19.jfif" class="card-img-top"
+                                            alt="Product Image">
                                         <hr>
-                                        <div class="icones d-flex justify-content-between mt-3">
-                                            <a href="WishList.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                            <a href="WishList.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                            <a href="product01.html" style="text-decoration: none; color: #000;"><i
-                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Oversize T-shirt</h5>
+                                            <span class="badge bg-danger text-white">Clothes</span>
+                                            <p>Best Seller</p>
+                                            <div class="stars">
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                                <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <p class="text-danger fs-5">$30</p>
+                                                <del class="text-muted fs-6">$45</del>
+                                            </div>
+                                            <hr>
+                                            <div class="icones d-flex justify-content-between mt-3">
+                                                <a href="WishList.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                                <a href="WishList.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                                <a href="product01.html" style="text-decoration: none; color: #000;"><i
+                                                        class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -566,7 +600,11 @@
             $('#rateMe4').mdbRate();
         });
     </script>
-
+    <!-- animation scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 <script>
     function myfunction(smallImg) {
@@ -579,5 +617,6 @@
         $('#rateMe4').mdbRate();
     });
 </script>
+<script src="app.js"></script>
 
 </html>

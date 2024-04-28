@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="img/websiteicon.jfif" />
-    <link rel="icon" type="image/x-icon" href="img/websiteicon.jfif" />
     <title>Shopping Bag</title>
     <!-- links -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -24,12 +23,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+    <!-- link animation scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="all">
+    <!-- loader -->
+    <div id="loader" class="loader"></div>
+    <div class="all" id="main-content">
+        <!-- chatbot -->
+        <div class="chat-icon" onclick="toggleChatbox()">💬</div>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-box" id="chat-box"></div>
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
         <!-- ibrahim responsive nav bar -->
         <!-- nav bar -->
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <div class="start">
             <div class="container">
                 <div class="row">
@@ -53,13 +64,25 @@
                     <div class="col text-end">
                         <!-- Aligns the content to the right -->
                         <div class="icons">
+                            <a href="Contact.html"><i style="color: #fff; padding-right: 10px"
+                                    class="fa-solid fa-headset fa-lg" aria-hidden="true"></i></a>
                             <a href="WishList.html"><i style="color: #fff; padding-right: 10px"
                                     class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                            <a href="cart.html">
-                                <i style="color: #fff; padding-right: 10px" class="fa-solid fa-cart-shopping fa-lg"
-                                    aria-hidden="true"></i></a>
                             <a href="user.html">
                                 <i style="color: #fff" class="fa-solid fa-user fa-lg" aria-hidden="true"></i></a>
+                            <a href="cart.html" style="margin-left: 10px;">
+                                <div class="mini-cart">
+                                    <div class="cart-icon"><i style="color: #fff; padding-right: 10px"
+                                            class="fa-solid fa-cart-shopping fa-lg" aria-hidden="true"></i></div>
+                                    <div class="cart-summary">
+                                        <ul class="cart-items">
+                                            <!-- Cart items will be dynamically injected here -->
+                                        </ul>
+                                        <hr>
+                                        <div class="cart-total">Total: $0</div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -120,122 +143,142 @@
         <!-- nav bar -->
         <br />
         <!-- landing page -->
-        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="0" class=""
-                    aria-label="Slide 1"></button>
-                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="1"
-                    aria-label="Slide 2" class="active" aria-current="true"></button>
-                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="2"
-                    aria-label="Slide 3" class=""></button>
-                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="3"
-                    aria-label="Slide 4" class=""></button>
-                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="4"
-                    aria-label="Slide 5" class=""></button>
+        <div data-aos="fade-up" data-aos-duration="3000">
+            <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="0" class=""
+                        aria-label="Slide 1"></button>
+                    <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="1"
+                        aria-label="Slide 2" class="active" aria-current="true"></button>
+                    <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="2"
+                        aria-label="Slide 3" class=""></button>
+                    <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="3"
+                        aria-label="Slide 4" class=""></button>
+                    <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="4"
+                        aria-label="Slide 5" class=""></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="img/clothes21.jpg" class="d-block w-100" alt="..." style="height: 530px; object-fit: cover;" />
+                    </div>
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="img/maintoy1.jpg" class="d-block w-100" alt="..." style="height: 530px; object-fit: cover;" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/mainhome1.jpg" class="d-block w-100" alt="..." style="height: 530px; object-fit: cover;" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/maingame1.jpg" class="d-block w-100" alt="..." style="height: 530px; object-fit: cover;" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/mainshoes3.jpg" class="d-block w-100" alt="..." style="height: 530px; object-fit: cover;" />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions"
+                    data-mdb-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions"
+                    data-mdb-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="img/clothes21.jpg" class="d-block w-100" alt="..." style="height: 530px" />
-                </div>
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="img/maintoy1.jpg" class="d-block w-100" alt="..." style="height: 530px" />
-                </div>
-                <div class="carousel-item">
-                    <img src="img/mainhome1.jpg" class="d-block w-100" alt="..." style="height: 530px" />
-                </div>
-                <div class="carousel-item">
-                    <img src="img/maingame1.jpg" class="d-block w-100" alt="..." style="height: 530px" />
-                </div>
-                <div class="carousel-item">
-                    <img src="img/mainshoes3.jpg" class="d-block w-100" alt="..." style="height: 530px" />
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
         <!-- landing page -->
         <br />
         <!-- ibrahim responsive category card -->
         <!-- category -->
+
         <div class="container">
             <br />
             <div class="row">
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="Clothing.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/clothes21.jpg" />
-                            <h5>Clothes</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="600">
+                        <a href="Clothing.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/clothes21.jpg" />
+                                <h5>Clothes</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="Electronics.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/mainelec1.jpg" />
-                            <h5>Electronics</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="1200">
+                        <a href="Electronics.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/mainelec1.jpg" />
+                                <h5>Electronics</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="Watches.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/mainwatch3.jpg" />
-                            <h5>watches</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="1800">
+                        <a href="Watches.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/mainwatch3.jpg" />
+                                <h5>watches</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="Shoes.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/mainshoes3.jpg" />
-                            <h5>shoes</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="2400">
+                        <a href="Shoes.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/mainshoes3.jpg" />
+                                <h5>shoes</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="SuperMarket.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/mainSuper3.jpg" />
-                            <h5>Super Market</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="600">
+                        <a href="SuperMarket.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/mainSuper3.jpg" />
+                                <h5>Super Market</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="Homesupplies.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/mainhome1.jpg" />
-                            <h5>Home Supplies</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="1200">
+                        <a href="Homesupplies.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/mainhome1.jpg" />
+                                <h5>Home Supplies</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="Toys.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/maintoy1.jpg" />
-                            <h5>Toys and Gmae</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="1800">
+                        <a href="Toys.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/maintoy1.jpg" />
+                                <h5>Toys and Gmae</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-3 mb-5 text-center">
-                    <a href="games.html">
-                        <div class="card5">
-                            <img class="img-fluid" src="img/maingame1.jpg" />
-                            <h5>Video Games</h5>
-                        </div>
-                    </a>
+                    <div data-aos="fade-up" data-aos-duration="2400">
+                        <a href="games.html">
+                            <div class="card5">
+                                <img class="img-fluid" src="img/maingame1.jpg" />
+                                <h5>Video Games</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
         <!-- category -->
         <br />
 
@@ -244,548 +287,552 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="card">
-                        <div class="title d-flex justify-content-between align-items-center px-3 py-2">
-                            <h5 style="color: #182957; font-weight: bold">HOT DEALS</h5>
-                            <span style="color: #ffc847; cursor: pointer">More</span>
-                        </div>
-                        <hr />
-                        <a href="product01.html"><img src="img/01-removebg-preview.png"
-                                class="card-img-top img-fluid" /></a>
-                        <hr />
-                        <div class="card-body py-2">
-                            <h5 class="card-title">Men T-shirt</h5>
-                            <a href="Clothing.html"><span style="
-                      color: white;
-                      background: red;
-                      border-radius: 5px;
-                      font-size: 14px;
-                      padding: 3px;
-                    ">Clothes</span></a>
-                            <div class="stars">
-                                <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card">
+                            <div class="title d-flex justify-content-between align-items-center px-3 py-2">
+                                <h5 style="color: #182957; font-weight: bold">HOT DEALS</h5>
+                                <span style="color: #ffc847; cursor: pointer">More</span>
                             </div>
-                            <div class="icones d-flex justify-content-between mt-3">
-                                <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                        class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                        class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                <a href="product01.html" style="text-decoration: none; color: #000"><i
-                                        class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                            <hr />
+                            <a href="product01.html"><img src="img/01-removebg-preview.png"
+                                    class="card-img-top img-fluid" /></a>
+                            <hr />
+                            <div class="card-body py-2">
+                                <h5 class="card-title">Men T-shirt</h5>
+                                <a href="Clothing.html"><span style="
+                          color: white;
+                          background: red;
+                          border-radius: 5px;
+                          font-size: 14px;
+                          padding: 3px;
+                        ">Clothes</span></a>
+                                <div class="stars">
+                                    <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i style="color: #ffc847" class="fa-solid fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="icones d-flex justify-content-between mt-3">
+                                    <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                            class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                    <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                            class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                    <a href="product01.html" style="text-decoration: none; color: #000"><i
+                                            class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="d-flex justify-content-between align-items-center px-3 py-2">
-                            <img style="height: 80px" src="img/adidas.png" class="img-fluid" alt="" />
-                            <img style="height: 80px" src="img/puma.png" class="img-fluid" alt="" />
+                        <div class="row">
+                            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+                                <img style="height: 80px" src="img/adidas.png" class="img-fluid" alt="" />
+                                <img style="height: 80px" src="img/puma.png" class="img-fluid" alt="" />
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="card">
-                        <div class="title" style="
-                  display: flex;
-                  justify-content: space-between;
-                  padding: 10px;
-                ">
-                            <h5 style="color: #182957; font-weight: bold">
-                                Daily Products Offers
-                            </h5>
-                            <span style="color: #ffc847; cursor: pointer">More</span>
-                        </div>
-                        <div class="row" style="padding: 0">
-                            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="4000">
-                                        <div class="card">
-                                            <div class="row" style="padding: 10px">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/clothes19.jfif"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                    <div data-aos="fade-left" data-aos-duration="3000">
+                        <div class="card">
+                            <div class="title" style="
+                      display: flex;
+                      justify-content: space-between;
+                      padding: 10px;
+                    ">
+                                <h5 style="color: #182957; font-weight: bold">
+                                    Daily Products Offers
+                                </h5>
+                                <span style="color: #ffc847; cursor: pointer">More</span>
+                            </div>
+                            <div class="row" style="padding: 0">
+                                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="4000">
+                                            <div class="card">
+                                                <div class="row" style="padding: 10px">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/clothes19.jfif"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/shoes10.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/shoes10.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/toys3.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/home10.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/market4.jpg"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/games7.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/home5.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/toys6.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %50
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/toys3.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="4000">
+                                            <div class="card">
+                                                <div class="row" style="padding: 10px">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/watches.jpg"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/games3.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/home10.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/home7.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/shoes5.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/home4.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/market4.jpg"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/market8.jpg"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/clothes15.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %25
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/market4.jpg"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="card">
+                                                <div class="row" style="padding: 10px">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/clothes10.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/shoes9.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/games7.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/toys12.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/toys5.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/home5.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/games3.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/market8.jpg"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/toys6.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %50
-                                                                </p>
-                                                            </div>
-                                                        </a>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/elec7.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <a style="text-decoration: none" href="#">
+                                                                <div class="card">
+                                                                    <img style="height: 200px" src="img/elec2.png"
+                                                                        class="card-img-top" />
+                                                                    <hr />
+                                                                    <p style="
+                                          color: #fff;
+                                          background: red;
+                                          border-radius: 5px;
+                                          text-align: center;
+                                        ">
+                                                                        %30
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="carousel-item" data-bs-interval="4000">
-                                        <div class="card">
-                                            <div class="row" style="padding: 10px">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/watches.jpg"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/games3.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/home7.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/shoes5.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/home4.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/market4.jpg"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/market8.jpg"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/clothes15.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %25
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="card">
-                                            <div class="row" style="padding: 10px">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/clothes10.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/shoes9.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/toys12.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/toys5.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/games3.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/market8.jpg"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/elec7.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <br />
-                                                    <div class="row">
-                                                        <a style="text-decoration: none" href="#">
-                                                            <div class="card">
-                                                                <img style="height: 200px" src="img/elec2.png"
-                                                                    class="card-img-top" />
-                                                                <hr />
-                                                                <p style="
-                                      color: #fff;
-                                      background: red;
-                                      border-radius: 5px;
-                                      text-align: center;
-                                    ">
-                                                                    %30
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button style="
+                          background: #182957;
+                          height: 45px;
+                          top: 50%;
+                          border-radius: 5px;
+                          width: 40px;
+                        " class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button style="
+                          background: #182957;
+                          height: 45px;
+                          top: 50%;
+                          border-radius: 5px;
+                          width: 40px;
+                        " class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                                <button style="
-                      background: #182957;
-                      height: 45px;
-                      top: 50%;
-                      border-radius: 5px;
-                      width: 40px;
-                    " class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button style="
-                      background: #182957;
-                      height: 45px;
-                      top: 50%;
-                      border-radius: 5px;
-                      width: 40px;
-                    " class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -799,181 +846,191 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title">Men T-shirt</h5>
-                                <a href="Clothing.html"><span style="
-                        color: white;
-                        background: red;
-                        border-radius: 5px;
-                        font-size: 14px;
-                        padding: 3px;
-                      ">Clothes</span></a>
-                            </div>
-                            <hr />
-                            <div class="row align-items-center">
-                                <div class="col text-center">
-                                    <!-- Center image in column -->
-                                    <img src="img/06.avif" class="img-fluid rounded-lg" alt="Product Image" />
-                                    <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title">Men T-shirt</h5>
+                                    <a href="Clothing.html"><span style="
+                            color: white;
+                            background: red;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            padding: 3px;
+                          ">Clothes</span></a>
                                 </div>
-                                <div class="col">
-                                    <div class="stars d-flex align-items-center">
-                                        <!-- Align stars in the same line -->
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                <hr />
+                                <div class="row align-items-center">
+                                    <div class="col text-center">
+                                        <!-- Center image in column -->
+                                        <img src="img/06.avif" class="img-fluid rounded-lg" alt="Product Image" />
+                                        <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$20</p>
-                                        <del class="text-muted fs-6">$35</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title">Head Set</h5>
-                                <a href="Electronics.html"><span style="
-                        color: white;
-                        background: rgb(108, 108, 201);
-                        border-radius: 5px;
-                        font-size: 14px;
-                        padding: 3px;
-                      ">Electronics</span></a>
-                            </div>
-                            <hr />
-                            <div class="row align-items-center">
-                                <div class="col text-center">
-                                    <!-- Center image in column -->
-                                    <img src="img/elec12.png" class="img-fluid rounded-lg" alt="Product Image" />
-                                    <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
-                                </div>
-                                <div class="col">
-                                    <div class="stars d-flex align-items-center">
-                                        <!-- Align stars in the same line -->
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$150</p>
-                                        <del class="text-muted fs-6">$180</del>
+                                    <div class="col">
+                                        <div class="stars d-flex align-items-center">
+                                            <!-- Align stars in the same line -->
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$20</p>
+                                            <del class="text-muted fs-6">$35</del>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title">Game Puzzle</h5>
-                                <a href="Toys.html"><span style="
-                        color: white;
-                        background: #ef77ef;
-                        border-radius: 5px;
-                        font-size: 14px;
-                        padding: 3px;
-                      ">Toys</span></a>
-                            </div>
-                            <hr />
-                            <div class="row align-items-center">
-                                <div class="col text-center">
-                                    <!-- Center image in column -->
-                                    <img src="img/toys2.png" class="img-fluid rounded-lg" alt="Product Image" />
-                                    <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title">Head Set</h5>
+                                    <a href="Electronics.html"><span style="
+                            color: white;
+                            background: rgb(108, 108, 201);
+                            border-radius: 5px;
+                            font-size: 14px;
+                            padding: 3px;
+                          ">Electronics</span></a>
                                 </div>
-                                <div class="col">
-                                    <div class="stars d-flex align-items-center">
-                                        <!-- Align stars in the same line -->
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                <hr />
+                                <div class="row align-items-center">
+                                    <div class="col text-center">
+                                        <!-- Center image in column -->
+                                        <img src="img/elec12.png" class="img-fluid rounded-lg" alt="Product Image" />
+                                        <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$10</p>
-                                        <del class="text-muted fs-6">$20</del>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title">Herbs</h5>
-                                <a href="Homesupplies.html"><span style="
-                        color: white;
-                        background: #c7b249;
-                        border-radius: 5px;
-                        font-size: 14px;
-                        padding: 3px;
-                      ">Homesupplies</span></a>
-                            </div>
-                            <hr />
-                            <div class="row align-items-center">
-                                <div class="col text-center">
-                                    <!-- Center image in column -->
-                                    <img src="img/home8.png" class="img-fluid rounded-lg" alt="Product Image" />
-                                    <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
-                                </div>
-                                <div class="col">
-                                    <div class="stars d-flex align-items-center">
-                                        <!-- Align stars in the same line -->
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$10</p>
-                                        <del class="text-muted fs-6">$25</del>
+                                    <div class="col">
+                                        <div class="stars d-flex align-items-center">
+                                            <!-- Align stars in the same line -->
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$150</p>
+                                            <del class="text-muted fs-6">$180</del>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title">Teddy Bear</h5>
-                                <a href="Toys.html"><span style="
-                        color: white;
-                        background: #ef77ef;
-                        border-radius: 5px;
-                        font-size: 14px;
-                        padding: 3px;
-                      ">Toys</span></a>
-                            </div>
-                            <hr />
-                            <div class="row align-items-center">
-                                <div class="col text-center">
-                                    <!-- Center image in column -->
-                                    <img src="img/toys12.png" class="img-fluid rounded-lg" alt="Product Image" />
-                                    <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title">Game Puzzle</h5>
+                                    <a href="Toys.html"><span style="
+                            color: white;
+                            background: #ef77ef;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            padding: 3px;
+                          ">Toys</span></a>
                                 </div>
-                                <div class="col">
-                                    <div class="stars d-flex align-items-center">
-                                        <!-- Align stars in the same line -->
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                <hr />
+                                <div class="row align-items-center">
+                                    <div class="col text-center">
+                                        <!-- Center image in column -->
+                                        <img src="img/toys2.png" class="img-fluid rounded-lg" alt="Product Image" />
+                                        <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$20</p>
-                                        <del class="text-muted fs-6">$30</del>
+                                    <div class="col">
+                                        <div class="stars d-flex align-items-center">
+                                            <!-- Align stars in the same line -->
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$10</p>
+                                            <del class="text-muted fs-6">$20</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title">Herbs</h5>
+                                    <a href="Homesupplies.html"><span style="
+                            color: white;
+                            background: #c7b249;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            padding: 3px;
+                          ">Homesupplies</span></a>
+                                </div>
+                                <hr />
+                                <div class="row align-items-center">
+                                    <div class="col text-center">
+                                        <!-- Center image in column -->
+                                        <img src="img/home8.png" class="img-fluid rounded-lg" alt="Product Image" />
+                                        <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
+                                    </div>
+                                    <div class="col">
+                                        <div class="stars d-flex align-items-center">
+                                            <!-- Align stars in the same line -->
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$10</p>
+                                            <del class="text-muted fs-6">$25</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-right" data-aos-duration="3000">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title">Teddy Bear</h5>
+                                    <a href="Toys.html"><span style="
+                            color: white;
+                            background: #ef77ef;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            padding: 3px;
+                          ">Toys</span></a>
+                                </div>
+                                <hr />
+                                <div class="row align-items-center">
+                                    <div class="col text-center">
+                                        <!-- Center image in column -->
+                                        <img src="img/toys12.png" class="img-fluid rounded-lg" alt="Product Image" />
+                                        <!-- Increase image size and add rounded-lg class for larger, rounded corners -->
+                                    </div>
+                                    <div class="col">
+                                        <div class="stars d-flex align-items-center">
+                                            <!-- Align stars in the same line -->
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$20</p>
+                                            <del class="text-muted fs-6">$30</del>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -984,164 +1041,174 @@
                 <!-- Repeat the above card structure for other offers -->
 
                 <div class="col-lg-9">
-                    <div class="card bg-dark text-white mb-4">
-                        <img src="img/model2.avif" class="card-img" style="height: 467px" alt="Banner Image" />
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">New Collection</h5>
+                    <div data-aos="fade-left" data-aos-duration="3000">
+                        <div class="card bg-dark text-white mb-4">
+                            <img src="img/model2.avif" class="card-img" style="height: 467px" alt="Banner Image" />
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">New Collection</h5>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-3 mb-4">
-                            <div class="card">
-                                <img style="height: 200px" src="img/elec7.png" class="card-img-top"
-                                    alt="Product Image" />
-                                <hr />
-                                <div class="card-body">
-                                    <h5 class="card-title">Web Cam</h5>
-                                    <a href="Toys.html">
-                                        <span style="
-                          color: white;
-                          background: #ef77ef;
-                          border-radius: 5px;
-                          font-size: 14px;
-                          padding: 3px;
-                        ">Toys</span></a>
-                                    <p>New Technology</p>
-                                    <div class="stars">
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$200</p>
-                                        <del class="text-muted fs-6">$300</del>
-                                    </div>
+                            <div data-aos="fade-up-left" data-aos-duration="3000">
+                                <div class="card">
+                                    <img style="height: 200px" src="img/elec7.png" class="card-img-top"
+                                        alt="Product Image" />
                                     <hr />
-                                    <div class="icones d-flex justify-content-between mt-3">
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                        <a href="product01.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Web Cam</h5>
+                                        <a href="Toys.html">
+                                            <span style="
+                              color: white;
+                              background: #ef77ef;
+                              border-radius: 5px;
+                              font-size: 14px;
+                              padding: 3px;
+                            ">Toys</span></a>
+                                        <p>New Technology</p>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$200</p>
+                                            <del class="text-muted fs-6">$300</del>
+                                        </div>
+                                        <hr />
+                                        <div class="icones d-flex justify-content-between mt-3">
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                            <a href="product01.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 mb-4">
-                            <div class="card">
-                                <img style="height: 200px" src="img/watches6.png" class="card-img-top"
-                                    alt="Product Image" />
-                                <hr />
-                                <div class="card-body">
-                                    <h5 class="card-title">Rolex Watch</h5>
-                                    <a href="Watches.html"><span style="
-                          color: white;
-                          background: #548484;
-                          border-radius: 5px;
-                          font-size: 14px;
-                          padding: 3px;
-                        ">Watches</span></a>
-                                    <p>Last Piece</p>
-                                    <div class="stars">
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$500</p>
-                                        <del class="text-muted fs-6">$800</del>
-                                    </div>
+                            <div data-aos="fade-up-left" data-aos-duration="3000">
+                                <div class="card">
+                                    <img style="height: 200px" src="img/watches6.png" class="card-img-top"
+                                        alt="Product Image" />
                                     <hr />
-                                    <div class="icones d-flex justify-content-between mt-3">
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                        <a href="product01.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Rolex Watch</h5>
+                                        <a href="Watches.html"><span style="
+                              color: white;
+                              background: #548484;
+                              border-radius: 5px;
+                              font-size: 14px;
+                              padding: 3px;
+                            ">Watches</span></a>
+                                        <p>Last Piece</p>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$500</p>
+                                            <del class="text-muted fs-6">$800</del>
+                                        </div>
+                                        <hr />
+                                        <div class="icones d-flex justify-content-between mt-3">
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                            <a href="product01.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 mb-4">
-                            <div class="card">
-                                <img style="height: 200px" src="img/games5.png" class="card-img-top"
-                                    alt="Product Image" />
-                                <hr />
-                                <div class="card-body">
-                                    <h5 class="card-title">PS4 Controller</h5>
-                                    <a href="games.html"><span style="
-                          color: white;
-                          background: #abc123;
-                          border-radius: 5px;
-                          font-size: 14px;
-                          padding: 3px;
-                        ">Video games</span></a>
-                                    <p>Added New</p>
-                                    <div class="stars">
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$40</p>
-                                        <del class="text-muted fs-6">$80</del>
-                                    </div>
+                            <div data-aos="fade-up-left" data-aos-duration="3000">
+                                <div class="card">
+                                    <img style="height: 200px" src="img/games5.png" class="card-img-top"
+                                        alt="Product Image" />
                                     <hr />
-                                    <div class="icones d-flex justify-content-between mt-3">
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                        <a href="product01.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">PS4 Controller</h5>
+                                        <a href="games.html"><span style="
+                              color: white;
+                              background: #abc123;
+                              border-radius: 5px;
+                              font-size: 14px;
+                              padding: 3px;
+                            ">Video games</span></a>
+                                        <p>Added New</p>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$40</p>
+                                            <del class="text-muted fs-6">$80</del>
+                                        </div>
+                                        <hr />
+                                        <div class="icones d-flex justify-content-between mt-3">
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                            <a href="product01.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 mb-4">
-                            <div class="card">
-                                <img style="height: 200px" src="img/elec9.png" class="card-img-top"
-                                    alt="Product Image" />
-                                <hr />
-                                <div class="card-body">
-                                    <h5 class="card-title">Ear Pods</h5>
-                                    <a href="Electronics.html">
-                                        <span style="
-                          color: white;
-                          background: rgb(108, 108, 201);
-                          border-radius: 5px;
-                          font-size: 14px;
-                          padding: 3px;
-                        ">Electronics</span></a>
-                                    <p>Best Seller</p>
-                                    <div class="stars">
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                        <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <p class="text-danger fs-5">$250</p>
-                                        <del class="text-muted fs-6">$320</del>
-                                    </div>
+                            <div data-aos="fade-up-left" data-aos-duration="3000">
+                                <div class="card">
+                                    <img style="height: 200px" src="img/elec9.png" class="card-img-top"
+                                        alt="Product Image" />
                                     <hr />
-                                    <div class="icones d-flex justify-content-between mt-3">
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
-                                        <a href="WishList.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
-                                        <a href="product01.html" style="text-decoration: none; color: #000"><i
-                                                class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Ear Pods</h5>
+                                        <a href="Electronics.html">
+                                            <span style="
+                              color: white;
+                              background: rgb(108, 108, 201);
+                              border-radius: 5px;
+                              font-size: 14px;
+                              padding: 3px;
+                            ">Electronics</span></a>
+                                        <p>Best Seller</p>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                            <i class="fa-solid fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <p class="text-danger fs-5">$250</p>
+                                            <del class="text-muted fs-6">$320</del>
+                                        </div>
+                                        <hr />
+                                        <div class="icones d-flex justify-content-between mt-3">
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-heart fa-lg" aria-hidden="true"></i></a>
+                                            <a href="WishList.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-regular fa-bookmark fa-lg" aria-hidden="true"></i></a>
+                                            <a href="product01.html" style="text-decoration: none; color: #000"><i
+                                                    class="fa-solid fa-cart-plus fa-lg" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1308,10 +1375,14 @@
                 </section>
             </div>
             <!-- Footer -->
-
-            <script src="app.js"></script>
         </footer>
     </div>
+
+    <!-- animation scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 <script src="app.js"></script>
 
